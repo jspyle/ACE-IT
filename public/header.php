@@ -32,13 +32,13 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
-        <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
+        <a href="index.php" class="w3-bar-item w3-button w3-wide"><img height="50px" src="../resources/ACE-IT%20LOGO.png" </a>
         <!-- Right-sided navbar links -->
         <div class="w3-right w3-hide-small">
-            <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-            <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PRODUCTS</a>
-            <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-list"></i> ORDERS</a>
-            <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ACCOUNT</a>
+            <a href="about.php" class="w3-bar-item w3-button">ABOUT</a>
+            <a href="products.php" class="w3-bar-item w3-button"><i class="fa fa-th"></i> PRODUCTS</a>
+            <a href="orders.php" class="w3-bar-item w3-button"><i class="fa fa-list"></i> ORDERS</a>
+            <a href="account.php" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ACCOUNT</a>
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 

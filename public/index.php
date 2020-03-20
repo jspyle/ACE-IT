@@ -1,5 +1,6 @@
 <?php
-include_once 'header.php'
+include_once 'header.php';
+include_once 'basket.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,23 +21,23 @@ include_once 'header.php'
                 <h3 class="w3-center">What We Provide</h3>
                 <div class="w3-row-padding w3-center" style="margin-top:64px">
                     <div class="w3-quarter">
-                        <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
-                        <p class="w3-large">Responsive</p>
+                        <i class="fas fa-ethernet w3-margin-bottom w3-jumbo w3-center"></i>
+                        <p class="w3-large">Networking</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                     </div>
                     <div class="w3-quarter">
-                        <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
-                        <p class="w3-large">Passion</p>
+                        <i class="fas fa-server w3-margin-bottom w3-jumbo"></i>
+                        <p class="w3-large">Servers</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                     </div>
                     <div class="w3-quarter">
-                        <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
-                        <p class="w3-large">Design</p>
+                        <i class="fas fa-desktop w3-margin-bottom w3-jumbo"></i>
+                        <p class="w3-large">Workstations</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                     </div>
                     <div class="w3-quarter">
-                        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
-                        <p class="w3-large">Support</p>
+                        <i class="fas fa-shield-alt w3-margin-bottom w3-jumbo"></i>
+                        <p class="w3-large">Security</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                     </div>
                 </div>

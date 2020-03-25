@@ -2,7 +2,12 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
 
-
+.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url('../../resources/mainBanner3.jpg');
+    min-height: 50%;
+}
 
 input,
 button {

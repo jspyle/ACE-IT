@@ -1,4 +1,5 @@
 <?php
 include_once 'header.php';
-include_once 'basket.php';
 ?>
+
+<h1>For this demonstration, the accounts page will not function.</h1>

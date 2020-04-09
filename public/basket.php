@@ -4,6 +4,7 @@
 
 <head>
     <link rel="stylesheet" href="styles/basket.css">
+    <title>Basket</title>
 </head>
 
 <style>

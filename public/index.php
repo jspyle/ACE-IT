@@ -1,10 +1,11 @@
 <?php
 include_once 'header.php';
+include_once '../src/model/dbContext.php';
 ?>
 
 <!DOCTYPE html>
 <html>
-<title>ACE-IT HOME</title>
+<title>ACE-IT - Professional IT Solutions</title>
 
 
 

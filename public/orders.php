@@ -2,6 +2,7 @@
 include_once 'header.php';
 ?>
 
+<title>Your Orders</title>
 
 <div class="w3-container w3-center w3-light-grey">
     <div class="w3-two-third w3-center w3-white" style="width:60%; height: 100px; margin: auto; border-style: solid">

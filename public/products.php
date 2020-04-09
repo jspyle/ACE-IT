@@ -2,6 +2,8 @@
 include_once 'header.php';
 ?>
 
+<title>Products</title>
+
 <style xmlns="http://www.w3.org/1999/html">
 
     #Operating li{

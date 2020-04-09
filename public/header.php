@@ -28,6 +28,17 @@
     }
     }
 
+
+
+    window.onload = function() {
+
+        var titlePage = document.title;
+        document.getElementById("test").innerHTML = titlePage;
+
+
+    }
+
+
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,17 +102,17 @@
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
-    <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
-    <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-    <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    <a href="about.php" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+    <a href="products.php" onclick="w3_close()" class="w3-bar-item w3-button">PRODUCTS</a>
+    <a href="orders.php" onclick="w3_close()" class="w3-bar-item w3-button">ORDERS</a>
+    <a href="account.php" onclick="w3_close()" class="w3-bar-item w3-button">ACCOUNT</a>
+    <a href="basket.php" onclick="w3_close()" class="w3-bar-item w3-button">BASKET</a>
 </nav>
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
     <div id="mainBanner" class="w3-display-left w3-text-white" style="padding:48px">
-        <span class="w3-jumbo w3-hide-small">Professional IT Solutions</span><br>
+        <span onload="pageTitle()" id="test" class="w3-jumbo w3-hide-small">Professional IT Solutions</span><br>
         <span class="w3-xxlarge w3-hide-large w3-hide-medium">ACE-IT</span><br>
         <span class="w3-large">Make sure you ACE your next IT upgrade with ACE-IT</span>
         <p><a href="products.php" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Browse Products <Today></Today></a></p>

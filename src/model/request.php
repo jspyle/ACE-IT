@@ -31,5 +31,3 @@ class timeTableInfo
         $this->timeslotDesc = $timeslotDesc;
     }
 }
-
-#test

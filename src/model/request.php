@@ -7,13 +7,15 @@ class timeTableInfo
 
     public function __construct($timeslotId, $timeslotDesc)
     {
-         $this->timeslotId = $timeslotId;
-         $this->timeslotDesc = $timeslotDesc;
+        $this->timeslotId = $timeslotId;
+        $this->timeslotDesc = $timeslotDesc;
     }
+
     public function getTimeslotId()
     {
         return $this->timeslotId;
     }
+
     public function setTimeslotId($timeslotId)
     {
         $this->timeslotId = $timeslotId;
@@ -23,9 +25,12 @@ class timeTableInfo
     {
         return $this->timeslotDesc;
     }
+
     public function setTimeslotDesc($timeslotDesc)
     {
         $this->timeslotDesc = $timeslotDesc;
+        pee
     }
 }
+
 

@@ -31,6 +31,8 @@ class timeTableInfo
         $this->timeslotDesc = $timeslotDesc;
         pee
     }
+
+    large phone
 }
 
 

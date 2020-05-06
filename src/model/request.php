@@ -29,10 +29,7 @@ class timeTableInfo
     public function setTimeslotDesc($timeslotDesc)
     {
         $this->timeslotDesc = $timeslotDesc;
-        peenis
     }
-
-    large phone
 }
 
 

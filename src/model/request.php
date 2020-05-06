@@ -32,6 +32,4 @@ class timeTableInfo
     }
 }
 
- #goodbye
- #mr
- #pyle
+#test

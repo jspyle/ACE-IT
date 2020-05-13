@@ -49,13 +49,12 @@ class dbContext
     }
 
 
-
-
-    public function getItemTypes($type)
+    public function getProductDisplay($type)
     {
 
-        $sql = "SELECT * FROM `product` WHERE `Display` = \"1\" AND `Food_Drink` LIKE '".$type."'";
+        $sql = "SELECT * FROM `item` WHERE `item_type`= '".$type."'";
 
+        //$sql = "SELECT * FROM `item` WHERE `Display` = \"1\" AND `Food_Drink` LIKE '".$type."'";
 
         $statement = $this->connection->prepare($sql);
         $statement->execute();
@@ -64,7 +63,7 @@ class dbContext
         $products = [];
         if ($resultSet) {
             foreach ($resultSet as $row) {
-                $product = new Product($row['Product_Id'], $row['Product_Name'], $row['Product_Desc'], $row['Food_Drink'], $row['Price'], $row['Stock'], $row['Dietary']);
+                $product = new item($row['Item_Id'], $row['Item_Name'], $row['Item_Type'], $row['Item_Description'], $row['Item_Specification'], $row['Item_Price'], $row['Item_Stock']);
                 $products[] = $product;
             }
         }

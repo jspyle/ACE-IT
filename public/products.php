@@ -1,5 +1,13 @@
 <?php
 include_once 'header.php';
+include_once '../src/model/dbContext.php';
+include_once '../src/model/request.php';
+
+if(!isset($db))
+{
+    $db = new dbContext();
+}
+
 ?>
 
 <title>Products</title>
@@ -87,6 +95,72 @@ include_once 'header.php';
 <!--Workstations-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Workstations">
     <h2>Workstations</h2>
+
+    <?php
+    $optionString = "";
+    $products = $db->getProductDisplay("WRK");
+    $className = 1;
+
+
+    if($products)
+    {
+        foreach($products as $product)
+        {
+
+
+
+            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                </ul>
+            </div>
+            <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
+
+                    <label for=\"noOp\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
+                            <h5>No Operating System</h5>
+                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                        </li>
+                    </label>
+                    <label for=\"noOp2\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
+                            <h5>Windows 10 Pro</h5>
+                            <h4>£".$product->getItemPrice()."</h4>
+                        </li>
+                    </label>
+                    <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                    </li>
+                </ul>
+            </div>
+            <div class=\"w3-rest w3-center\" style=\"padding:0;\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li>
+                        <div class=\"itemDesc\">
+                            <h1>".$product->getItemName()."</h1>
+                            <h4>".$product->getItemDescription()."</h4>
+                            <p>".$product->getItemSpecification()."</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>";
+            $className += 1;
+        }
+    }
+
+    echo $listProduct
+
+
+    ?>
+
     <div class="" style="margin-top:64px">
             <div class="w3-col w3-left" style="width:300px; padding:0">
                 <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
@@ -242,6 +316,72 @@ include_once 'header.php';
 <!--Servers-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Servers">
     <h2>Servers</h2>
+
+    <?php
+    $optionString = "";
+    $products = $db->getProductDisplay("SRV");
+    $className = 1;
+
+
+    if($products)
+    {
+        foreach($products as $product)
+        {
+
+
+
+            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                </ul>
+            </div>
+            <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
+
+                    <label for=\"noOp\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
+                            <h5>No Operating System</h5>
+                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                        </li>
+                    </label>
+                    <label for=\"noOp2\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
+                            <h5>Windows 10 Pro</h5>
+                            <h4>£".$product->getItemPrice()."</h4>
+                        </li>
+                    </label>
+                    <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                    </li>
+                </ul>
+            </div>
+            <div class=\"w3-rest w3-center\" style=\"padding:0;\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li>
+                        <div class=\"itemDesc\">
+                            <h1>".$product->getItemName()."</h1>
+                            <h4>".$product->getItemDescription()."</h4>
+                            <p>".$product->getItemSpecification()."</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>";
+            $className += 1;
+        }
+    }
+
+    echo $listProduct
+
+
+    ?>
+
     <div class="" style="margin-top:64px">
         <div class="w3-col w3-left" style="width:300px; padding:0">
             <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
@@ -400,6 +540,72 @@ include_once 'header.php';
 <!--Routers-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Routers">
     <h2>Rotuers</h2>
+
+    <?php
+    $optionString = "";
+    $products = $db->getProductDisplay("RTR");
+    $className = 1;
+
+
+    if($products)
+    {
+        foreach($products as $product)
+        {
+
+
+
+            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                </ul>
+            </div>
+            <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
+
+                    <label for=\"noOp\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
+                            <h5>No Operating System</h5>
+                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                        </li>
+                    </label>
+                    <label for=\"noOp2\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
+                            <h5>Windows 10 Pro</h5>
+                            <h4>£".$product->getItemPrice()."</h4>
+                        </li>
+                    </label>
+                    <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                    </li>
+                </ul>
+            </div>
+            <div class=\"w3-rest w3-center\" style=\"padding:0;\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li>
+                        <div class=\"itemDesc\">
+                            <h1>".$product->getItemName()."</h1>
+                            <h4>".$product->getItemDescription()."</h4>
+                            <p>".$product->getItemSpecification()."</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>";
+            $className += 1;
+        }
+    }
+
+    echo $listProduct
+
+
+    ?>
+
     <div class="" style="margin-top:64px">
         <div class="w3-col w3-left" style="width:300px; padding:0">
             <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
@@ -454,6 +660,72 @@ include_once 'header.php';
 <!--Switches-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Switches">
     <h2>Switches</h2>
+
+    <?php
+    $optionString = "";
+    $products = $db->getProductDisplay("SWI");
+    $className = 1;
+
+
+    if($products)
+    {
+        foreach($products as $product)
+        {
+
+
+
+            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                </ul>
+            </div>
+            <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
+
+                    <label for=\"noOp\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
+                            <h5>No Operating System</h5>
+                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                        </li>
+                    </label>
+                    <label for=\"noOp2\">
+                        <li class=\"w3-hover-shadow w3-light-grey\">
+                            <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
+                            <h5>Windows 10 Pro</h5>
+                            <h4>£".$product->getItemPrice()."</h4>
+                        </li>
+                    </label>
+                    <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                    </li>
+                </ul>
+            </div>
+            <div class=\"w3-rest w3-center\" style=\"padding:0;\">
+                <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
+                    <li>
+                        <div class=\"itemDesc\">
+                            <h1>".$product->getItemName()."</h1>
+                            <h4>".$product->getItemDescription()."</h4>
+                            <p>".$product->getItemSpecification()."</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>";
+            $className += 1;
+        }
+    }
+
+    echo $listProduct
+
+
+    ?>
+
     <div class="" style="margin-top:64px">
         <div class="w3-col w3-left" style="width:300px; padding:0">
             <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">

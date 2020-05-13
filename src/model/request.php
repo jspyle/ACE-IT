@@ -239,7 +239,7 @@ class item
     private $itemPrice;
     private $itemStock;
 
-    public function __construct($itemId, $itemName, $itemType, $itemDescription, $itemSpecification, $itemPrice, $item_Stock)
+    public function __construct($itemId, $itemName, $itemType, $itemDescription, $itemSpecification, $itemPrice, $itemStock)
     {
         $this->itemId = $itemId;
         $this->itemName = $itemName;
@@ -247,7 +247,7 @@ class item
         $this->itemDescription = $itemDescription;
         $this->itemSpecification = $itemSpecification;
         $this->itemPrice = $itemPrice;
-        $this->itemStock = $this->itemStock;
+        $this->itemStock = $itemStock;
     }
 
     public function getItemId()
@@ -303,6 +303,11 @@ class item
     public function getItemPrice()
     {
         return $this->itemPrice;
+    }
+
+    public function getItemPriceNoOs()
+    {
+        return $this->itemPrice-500;
     }
 
     public function setItemPrice($itemPrice)

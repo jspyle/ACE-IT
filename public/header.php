@@ -1,4 +1,16 @@
 <?php
+include_once '../src/model/dbContext.php';
+
+if(!isset($db))
+{
+    $db = new dbContext();
+}
+
+$result = $_SERVER['HTTP_USER_AGENT'].$_SERVER['LOCAL_ADDR'].$_SERVER['LOCAL_PORT'].$_SERVER['REMOTE_ADDR'];
+$cookie_name = "customer_no";
+setcookie($cookie_name, $result, time() + (86400), "/");
+
+
 
 ?>
 <script>

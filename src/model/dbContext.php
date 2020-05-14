@@ -48,7 +48,6 @@ class dbContext
         return $timetables;
     }
 
-
     public function getProductDisplay($type)
     {
 
@@ -69,22 +68,89 @@ class dbContext
         }
         return $products;
     }
+// Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0192.168.0.101
 
-
-    public function enterOrderRequest($orderDetails)
+    public function getBasket($customerId)
     {
-        $sql = "CALL EnterRequest(:Order_Id, :Customer_Id, :Table_No, :Time)";
+
+        $sql = "SELECT DISTINCT(`Item_Id`),`Item_Name` , `Item_Description`, `Item_Specification`, `Item_Price` FROM `basket` WHERE `Temp_Customer`= '".$customerId."'";
+
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $baskets = [];
+        if ($resultSet) {
+            foreach ($resultSet as $row) {
+                $basket = new basket($row['Item_Id'], $row['Item_Name'], $row['Item_Type'], $row['Item_Description'], $row['Item_Specification'], $row['Item_Price'], $row['Item_Stock']);
+                $baskets[] = $basket;
+            }
+        }
+        return $baskets;
+    }
+
+
+    public function basketInput($basket)
+    {
+        $sql = "CALL Basket_IN(:Basket_Id_IN, :Item_Id_IN, :Item_Name_IN, :Item_Description, :Item_Price_IN, :Temp_Customer)";
         $statement = $this->connection->prepare($sql);
 
-        $statement->bindParam(':Order_Id', $orderDetails->getOrderId(), PDO::PARAM_INT);
-        $statement->bindParam(':Customer_Id', $orderDetails->getCustomerId(), PDO::PARAM_INT);
-        $statement->bindParam(':Table_No', $orderDetails->getTableNo(), PDO::PARAM_INT);
-        $statement->bindParam(':Time', $orderDetails->getTime(), PDO::PARAM_STR);
-        $orderDetails = $statement->execute();
+        $statement->bindParam(':Basket_Id_IN', $basket->getBasketId(), PDO::PARAM_INT);
+        $statement->bindParam(':Item_Id_IN', $basket->getItemId(), PDO::PARAM_STR);
+        $statement->bindParam(':Item_Name_IN', $basket->getItemName(), PDO::PARAM_STR);
+        $statement->bindParam(':Item_Description', $basket->getItemDescription(), PDO::PARAM_STR);
+        $statement->bindParam(':Item_Price_IN', $basket->getItemPrice(), PDO::PARAM_STR);
+        $statement->bindParam(':Temp_Customer', $basket->getTempCust(), PDO::PARAM_STR);
+        $basket = $statement->execute();
 
-        return $orderDetails;
+        return $basket;
 
     }
+
+    public function getNextBasketId()
+    {
+
+        $sql="SELECT MAX(Basket_Id) FROM basket ORDER BY Basket_Id DESC";
+        $order = $this->connection->prepare($sql);
+        $order->execute();
+        $resultSet = $order->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultSet as $row){
+            $result = $row['MAX(Basket_Id)'];
+        }
+        return ($result +1);
+
+    }
+
+    public function getQuantity()
+    {
+
+        $sql="SELECT MAX(Basket_Id) FROM basket ORDER BY Basket_Id DESC";
+        $order = $this->connection->prepare($sql);
+        $order->execute();
+        $resultSet = $order->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultSet as $row){
+            $result = $row['MAX(Basket_Id)'];
+        }
+        return ($result +1);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function enterCustomerRequest($customer)
     {

@@ -418,6 +418,84 @@ class orderStatus
     }
 }
 
+class basket
+{
+    private $basketId;
+    private $itemId;
+    private $itemName;
+    private $itemDescription;
+    private $itemPrice;
+    private $tempCust;
+
+    public function __construct($basketId, $itemId, $itemName, $itemDescription, $itemPrice, $tempCust)
+    {
+        $this->basketId = $basketId;
+        $this->itemId = $itemId;
+        $this->itemName = $itemName;
+        $this->itemDescription = $itemDescription;
+        $this->itemPrice = $itemPrice;
+        $this->tempCust =$tempCust;
+    }
+
+    public function getBasketId()
+    {
+        return $this->basketId;
+    }
+
+    public function setBasketId($basketId)
+    {
+        $this->basketId = $basketId;
+    }
+
+    public function getItemId()
+    {
+        return $this->itemId;
+    }
+
+    public function setItemId($itemId)
+    {
+        $this->itemId = $itemId;
+    }
+    public function getItemName()
+    {
+        return $this->itemName;
+    }
+
+    public function setItemName($itemName)
+    {
+        $this->itemName = $itemName;
+    }
+
+    public function getItemDescription()
+    {
+        return $this->itemDescription;
+    }
+
+    public function setItemDescription($itemDescription)
+    {
+        $this->itemDescription = $itemDescription;
+    }
+    public function getItemPrice()
+    {
+        return $this->itemPrice;
+    }
+    public function setItemPrice($itemPrice)
+    {
+        $this->itemPrice = $itemPrice;
+    }
+    public function getTempCust()
+    {
+        return $this->tempCust;
+    }
+    public function setTempCust($tempCust)
+    {
+        $this->tempCust = $tempCust;
+    }
+
+
+}
+
+
 
 
 

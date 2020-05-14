@@ -1,5 +1,16 @@
 <?php
     include_once 'header.php';
+    include_once '../src/model/dbContext.php';
+    include_once '../src/model/request.php';
+
+if(!isset($db))
+{
+    $db = new dbContext();
+}
+
+
+$customerId = $_COOKIE[$cookie_name]
+
 ?>
 
 <head>
@@ -152,66 +163,101 @@
 
 
 
-<main>
-    <div class="basket">
-        <div class="basket-labels">
-            <ul>
-                <li class="item item-heading">Item</li>
-                <li class="price">Price</li>
-                <li class="quantity">Quantity</li>
-                <li class="subtotal">Subtotal</li>
-            </ul>
-        </div>
-        <div class="basket-product">
-            <div class="item">
-                <div class="product-image">
-                    <img src="../resources/Workstations/WS-1.png" alt="Placholder Image 2" class="product-frame">
-                </div>
-                <div class="product-details">
-                    <h1><strong><span class="item-quantity"></span>ACE-STATION V1</strong></h1>
-                    <p><strong>Workstation</strong></p>
-                    <p>Product Code - WS3456</p>
-                </div>
-            </div>
-            <div class="price">839.99</div>
-            <div class="quantity">
-                <input type="number" value="1" min="1" class="quantity-field">
-            </div>
-            <div class="subtotal">839.99</div>
-            <div class="remove">
-                <button>Remove</button>
-            </div>
-        </div>
+<?php
+$optionString = "";
+$baskets = $db->getBasket($customerId);
+$className = 1;
 
-    </div>
-    <aside>
-        <div class="summary">
-            <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
-            <div class="summary-subtotal">
-                <div class="subtotal-title">Subtotal</div>
-                <div class="subtotal-value final-value" id="basket-subtotal">839.99</div>
-                <div class="summary-promo hide">
-                    <div class="promo-title">Promotion</div>
-                    <div class="promo-value final-value" id="basket-promo"></div>
+
+if($baskets)
+{
+    foreach($baskets as $basket)
+    {
+
+
+
+        $listBasket.="<div class=\".$className.\" style=\"margin-top:64px\">
+             <div class=\"basket\">
+                    <div class=\"basket-labels\">
+                        <ul>
+                            <li class=\"item item-heading\">Item</li>
+                            <li class=\"price\">Price</li>
+                            <li class=\"quantity\">Quantity</li>
+                            <li class=\"subtotal\">Subtotal</li>
+                        </ul>
+                    </div>
+                    <div class=\"basket-product\">
+                        <div class=\"item\">
+                            <div class=\"product-image\">
+                                <img src=\"../resources/Products/".$basket->getItemId()."\" alt=\"Placholder Image 2\" class=\"product-frame\">
+                            </div>
+                            <div class=\"product-details\">
+                                <h1><strong><span class=\"item-quantity\"></span>".$basket->getItemName()."</strong></h1>
+                                <p><strong>".$basket->getItemDescription()."</strong></p>
+                                <p>Product Code: ".$basket->getItemId()."</p>
+                            </div>
+                        </div>
+                        <div class=\"price\">839.99</div>
+                        <div class=\"quantity\">
+                            <input type=\"number\" value=\"1\" min=\"1\" class=\"quantity-field\">
+                        </div>
+                        <div class=\"subtotal\">".$basket->getItemPrice()."</div>
+                        <div class=\"remove\">
+                            <button>Remove</button>
+                        </div>
+                    </div>
+            
                 </div>
-            </div>
-            <div class="summary-delivery">
-                <select name="delivery-collection" class="summary-delivery-selection">
-                    <option value="0" selected="selected">Select Collection or Delivery</option>
-                    <option value="collection">Collection</option>
-                    <option value="delivery">----------------- Delivery coming soon ---------------</option>
-                </select>
-            </div>
-            <div class="summary-total">
-                <div class="total-title">Total</div>
-                <div class="total-value final-value" id="basket-total">839.99</div>
-            </div>
-            <div class="summary-checkout">
-                <button onclick="window.alert('Thank you for your order'); window.location.href = 'orders.php'" class="checkout-cta">Checkout</button>
-            </div>
-        </div>
-    </aside>
-</main>
+                <aside>
+                    <div class=\"summary\">
+                        <div class=\"summary-total-items\"><span class=\"total-items\"></span> Items in your Bag</div>
+                        <div class=\"summary-subtotal\">
+                            <div class=\"subtotal-title\">Subtotal</div>
+                            <div class=\"subtotal-value final-value\" id=\"basket-subtotal\">839.99</div>
+                            <div class=\"summary-promo hide\">
+                                <div class=\"promo-title\">Promotion</div>
+                                <div class=\"promo-value final-value\" id=\"basket-promo\"></div>
+                            </div>
+                        </div>
+                        <div class=\"summary-delivery\">
+                            <select name=\"delivery-collection\" class=\"summary-delivery-selection\">
+                                <option value=\"0\" selected=\"selected\">Select Collection or Delivery</option>
+                                <option value=\"collection\">Collection</option>
+                                <option value=\"delivery\">----------------- Delivery coming soon ---------------</option>
+                            </select>
+                        </div>
+                        <div class=\"summary-total\">
+                            <div class=\"total-title\">Total</div>
+                            <div class=\"total-value final-value\" id=\"basket-total\">839.99</div>
+                        </div>
+                        <div class=\"summary-checkout\">
+                            <button onclick=\"window.alert('Thank you for your order'); window.location.href = 'orders.php'\" class=\"checkout-cta\">Checkout</button>
+                        </div>
+                    </div>
+
+
+
+
+    </div>";
+        $className += 1;
+    }
+}
+
+echo $listBasket;
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

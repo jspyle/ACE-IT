@@ -8,6 +8,40 @@ if(!isset($db))
     $db = new dbContext();
 }
 
+
+if(!isset($db)) {
+    $db = new dbContext();
+}
+if (isset($_POST['submit_Request'])) {
+
+
+    $basketId = $db->getNextBasketId();
+
+    $submitRequest = new basket($basketId, $_POST['itemId'], $_POST['itemName'], $_POST['itemDesc'],$_POST['itemPrice'], $result);
+
+    $success = $db->basketInput($submitRequest);
+
+//    //if($_POST['foodQuantity1'] != 0):
+//    $submitFoodItem1 = new itemDetails($orderId."1", $orderId,$_POST['foodTable'], $_POST['foodQuantity1']);
+//    $db->enterItemRequest($submitFoodItem1);
+//    //  endif;
+//    // if($_POST['foodQuantity2'] != 0) :
+//    $submitFoodItem2 = new itemDetails($orderId."2",$orderId, $_POST['foodTable2'], $_POST['foodQuantity2']);
+//    $db->enterItemRequest($submitFoodItem2);
+//    //endif;
+//    //if($_POST['drinkQuantity1'] != 0) :
+//    $submitDrinkItem1 = new itemDetails($orderId."3",$orderId,$_POST['drinkTable'], $_POST['drinkQuantity1']);
+//    $db->enterItemRequest($submitDrinkItem1);
+//    //endif;
+//    //if($_POST['drinkQuantity2'] != 0) :
+//    $submitDrinkItem2 = new itemDetails($orderId."4",$orderId,$_POST['drinkTable2'], $_POST['drinkQuantity2']);
+//    $db->enterItemRequest($submitDrinkItem2);
+//    // endif;
+//    //$success = $db->enter_Request($request);
+}
+
+$submitItems = $_SERVER['PHP_SELF'];
+
 ?>
 
 <title>Products</title>
@@ -112,28 +146,25 @@ if(!isset($db))
             $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
-                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
+                    <li style=\"padding: 0\"><img src=\"../resources/Products/".$product->getItemId().".png\" width=\"100%\"></li>
                     <h5 id=timeslutId>".$product->getItemId()."</h5>
                 </ul>
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
-                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
-
-                    <label for=\"noOp\">
-                        <li class=\"w3-hover-shadow w3-light-grey\">
-                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
-                            <h5>No Operating System</h5>
-                            <h4>£".$product->getItemPriceNoOs()."</h4>
-                        </li>
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">                   
                     </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
-                            <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
                             <h5>Windows 10 Pro</h5>
                             <h4>£".$product->getItemPrice()."</h4>
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+
+
+
+
+                    
                         <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
                     </li>
                 </ul>
@@ -156,185 +187,43 @@ if(!isset($db))
         }
     }
 
-    echo $listProduct
+    echo $listProduct;
+
+
 
 
     ?>
 
-    <div class="" style="margin-top:64px">
-            <div class="w3-col w3-left" style="width:300px; padding:0">
-                <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                    <li style="padding: 0"><img src="../resources/Workstations/WS-1.png" width="100%"></li>
-                </ul>
-            </div>
-            <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-                <ul class="w3-ul w3-red" style="height: 400px">
-
-                    <label for="noOp">
-                        <li class="w3-hover-shadow w3-light-grey">
-                            <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                            <h5>No Operating System</h5>
-                            <h4>£699.99</h4>
-                        </li>
-                    </label>
-                    <label for="noOp2">
-                        <li class="w3-hover-shadow w3-light-grey">
-                            <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                            <h5>Windows 10 Pro</h5>
-                            <h4>£839.99</h4>
-                        </li>
-                    </label>
-                    <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                        <button onclick="window.alert('Item added to basket')" class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="w3-rest w3-center" style="padding:0;">
-                <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                    <li>
-                        <div class="itemDesc">
-                            <h1>ACE-Station v1</h1>
-                            <h4>This is our tier 1 workstation it is a great all around but has enough power to take on larger tasks too, while not built for a specific task it is ideal for small to medium sized businesses.</h4>
-                            <p>•	9th Generation Intel i5 9400F 2.9GHz Six Core Processor <br>
-                                •	8GB DDR4 2400MHz Memory <br>
-                                •	240GB NVME M.2 Solid State Drive <br>
-                                •	AMD Radeon Pro WX 3100 Graphics Card <br>
-                                •	ACE-CASE Micro <br>
-                                •	Cooler master MWA White PSU 300W <br>
-                                •	Gigabyte H310M S2H H310 Motherboard <br>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-
-    </div>
-
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Workstations/WS-2.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows 10 Pro</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button onclick="window.alert('Item added to basket')" class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>ACE-Station v2</h1>
-                        <h4>This is our tier 1 workstation it is a great all around but has enough power to take on larger tasks too, while not built for a specific task it is ideal for small to medium sized businesses.</h4>
-                        <p>•	9th Generation Intel i5 9400F 2.9GHz Six Core Processor <br>
-                            •	8GB DDR4 2400MHz Memory <br>
-                            •	240GB NVME M.2 Solid State Drive <br>
-                            •	AMD Radeon Pro WX 3100 Graphics Card <br>
-                            •	ACE-CASE Micro <br>
-                            •	Cooler master MWA White PSU 300W <br>
-                            •	Gigabyte H310M S2H H310 Motherboard <br>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Workstations/WS-3.jpg" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows 10 Pro</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button onclick="window.alert('Item added to basket')" class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>ACE-Station v3</h1>
-                        <h4>This is our tier 1 workstation it is a great all around but has enough power to take on larger tasks too, while not built for a specific task it is ideal for small to medium sized businesses.</h4>
-                        <p>•	9th Generation Intel i5 9400F 2.9GHz Six Core Processor <br>
-                            •	8GB DDR4 2400MHz Memory <br>
-                            •	240GB NVME M.2 Solid State Drive <br>
-                            •	AMD Radeon Pro WX 3100 Graphics Card <br>
-                            •	ACE-CASE Micro <br>
-                            •	Cooler master MWA White PSU 300W <br>
-                            •	Gigabyte H310M S2H H310 Motherboard <br>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-
-</div>
 
 <!--Servers-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Servers">
+
     <h2>Servers</h2>
+
+
+
 
     <?php
     $optionString = "";
-    $products = $db->getProductDisplay("SRV");
+    $servers = $db->getProductDisplay("SVR");
     $className = 1;
 
 
-    if($products)
+    if($servers)
     {
-        foreach($products as $product)
+        foreach($servers as $server)
         {
 
 
 
-            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            $listServer.="<div class=\".$className.\" style=\"margin-top:64px\">
+
+            <form method=\"post\" action=\"$submitItems\">
+            
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
-                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
-                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                    <li style=\"padding: 0\"><img src=\"../resources/Products/".$server->getItemId().".png\" width=\"100%\"></li>
+                    <h5 name='itemId' id=timeslutId>".$server->getItemId()."</h5>
                 </ul>
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
@@ -344,17 +233,26 @@ if(!isset($db))
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
                             <h5>No Operating System</h5>
-                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                            <h4>£".$server->getItemPriceNoOs()."</h4>
                         </li>
                     </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
                             <h5>Windows 10 Pro</h5>
-                            <h4>£".$product->getItemPrice()."</h4>
+                            <h4>£".$server->getItemPrice()."</h4>
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
+                        
+                            <input hidden type=\"text\" name=\"itemId\" value=\"".$server->getItemId()."\">
+                            <input hidden type=\"text\" name=\"itemName\" value=\"".$server->getItemName()."\">                            
+                            <input hidden type=\"text\" name=\"itemDesc\" value=\"".$server->getItemDescription()."\">
+                            <input hidden type=\"text\" name=\"itemPrice\" value=".$server->getItemPrice().">
+                            
+                            
+                        <input name=\"submit_Request\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"Place Order\">
+                        
                         <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
                     </li>
                 </ul>
@@ -363,179 +261,27 @@ if(!isset($db))
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li>
                         <div class=\"itemDesc\">
-                            <h1>".$product->getItemName()."</h1>
-                            <h4>".$product->getItemDescription()."</h4>
-                            <p>".$product->getItemSpecification()."</p>
+                            <h1 name='itemName'>".$server->getItemName()."</h1>
+                            <h4>".$server->getItemDescription()."</h4>
+                            <p>".$server->getItemSpecification()."</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-
+  </form>
     </div>";
             $className += 1;
         }
     }
 
-    echo $listProduct
+    echo $listServer
 
 
     ?>
 
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Servers/SERV-1.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows Server 2019</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>ACE-Serv V1</h1>
-                        <h4>This is our tier 1 Server, it’s a great start for smaller businesses not requiring large computing power but will be great for smaller offices, providing vital services or network attached storage</h4>
-                        <p>
-                            •	Intel Xeon Bronze 3204 Processor Six Core 1.90GHz Processor<br>
-                            •	16GB DDR4 2666MHz ECC Registered DIMM<br>
-                            •   2x WD RED 1TB HDD<br>
-                            •	ACE-CASE TowerServ<br>
-                            •	SuperMicro X11SPL-F Motherboard<br>
-                            •	Supermicro 3647 Cooler<br>
-
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
 
 
-    </div>
-
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Servers/SERV-2.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows Server 2019</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>ACE-Serv V2</h1>
-                        <h4>This is our tier 2 Server, it’s a great start for smaller businesses not requiring large computing power but will be great for smaller offices, providing vital services or network attached storage</h4>
-                        <p>
-                            •	Intel Xeon Bronze 3204 Processor Six Core 1.90GHz Processor<br>
-                            •	16GB DDR4 2666MHz ECC Registered DIMM<br>
-                            •   2x WD RED 1TB HDD<br>
-                            •	ACE-CASE TowerServ<br>
-                            •	SuperMicro X11SPL-F Motherboard<br>
-                            •	Supermicro 3647 Cooler<br>
-
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Servers/SERV-STORE.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows Server 2019</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>ACE-Serv Store</h1>
-                        <h4>This is our storage Server, it’s a great start for smaller businesses not requiring large computing power but will be great for smaller offices, providing vital services or network attached storage</h4>
-                        <p>
-                            •	Intel Xeon Bronze 3204 Processor Six Core 1.90GHz Processor<br>
-                            •	16GB DDR4 2666MHz ECC Registered DIMM<br>
-                            •   2x WD RED 1TB HDD<br>
-                            •	ACE-CASE TowerServ<br>
-                            •	SuperMicro X11SPL-F Motherboard<br>
-                            •	Supermicro 3647 Cooler<br>
-
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-
-</div>
 
 <!--Routers-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Routers">
@@ -543,22 +289,22 @@ if(!isset($db))
 
     <?php
     $optionString = "";
-    $products = $db->getProductDisplay("RTR");
+    $routers = $db->getProductDisplay("RTR");
     $className = 1;
 
 
     if($products)
     {
-        foreach($products as $product)
+        foreach($routers as $router)
         {
 
 
 
-            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            $listRouter.="<div class=\".$className.\" style=\"margin-top:64px\">
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
-                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
-                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                    <li style=\"padding: 0\"><img src=\"../resources/Products/".$router->getItemId()."\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$router->getItemId()."</h5>
                 </ul>
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
@@ -568,14 +314,14 @@ if(!isset($db))
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
                             <h5>No Operating System</h5>
-                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                            <h4>£".$router->getItemPriceNoOs()."</h4>
                         </li>
                     </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
                             <h5>Windows 10 Pro</h5>
-                            <h4>£".$product->getItemPrice()."</h4>
+                            <h4>£".$router->getItemPrice()."</h4>
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
@@ -587,9 +333,9 @@ if(!isset($db))
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li>
                         <div class=\"itemDesc\">
-                            <h1>".$product->getItemName()."</h1>
-                            <h4>".$product->getItemDescription()."</h4>
-                            <p>".$product->getItemSpecification()."</p>
+                            <h1>".$router->getItemName()."</h1>
+                            <h4>".$router->getItemDescription()."</h4>
+                            <p>".$router->getItemSpecification()."</p>
                         </div>
                     </li>
                 </ul>
@@ -601,61 +347,11 @@ if(!isset($db))
         }
     }
 
-    echo $listProduct
+    echo $listRouter
 
 
     ?>
 
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Routers/ROUTER-2.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows 10 Pro</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>Router</h1>
-                        <h4>This is our tier 1 workstation it is a great all around but has enough power to take on larger tasks too, while not built for a specific task it is ideal for small to medium sized businesses.</h4>
-                        <p>•	9th Generation Intel i5 9400F 2.9GHz Six Core Processor <br>
-                            •	8GB DDR4 2400MHz Memory <br>
-                            •	240GB NVME M.2 Solid State Drive <br>
-                            •	AMD Radeon Pro WX 3100 Graphics Card <br>
-                            •	ACE-CASE Micro <br>
-                            •	Cooler master MWA White PSU 300W <br>
-                            •	Gigabyte H310M S2H H310 Motherboard <br>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-    </div>
-</div>
 
 <!--Switches-->
 <div class="w3-container w3-center w3-light-grey" style="padding:60px 16px" id="Switches">
@@ -663,22 +359,22 @@ if(!isset($db))
 
     <?php
     $optionString = "";
-    $products = $db->getProductDisplay("SWI");
+    $switches = $db->getProductDisplay("SWI");
     $className = 1;
 
 
-    if($products)
+    if($switches)
     {
-        foreach($products as $product)
+        foreach($switches as $switch)
         {
 
 
 
-            $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+            $listSwitches.="<div class=\".$className.\" style=\"margin-top:64px\">
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
-                    <li style=\"padding: 0\"><img src=\"../resources/Workstations/".$product->getItemId().".png\" width=\"100%\"></li>
-                    <h5 id=timeslutId>".$product->getItemId()."</h5>
+                    <li style=\"padding: 0\"><img src=\"../resources/Products/".$switch->getItemId()."\" width=\"100%\"></li>
+                    <h5 id=timeslutId>".$switch->getItemId()."</h5>
                 </ul>
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
@@ -688,14 +384,14 @@ if(!isset($db))
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
                             <h5>No Operating System</h5>
-                            <h4>£".$product->getItemPriceNoOs()."</h4>
+                            <h4>£".$switch->getItemPriceNoOs()."</h4>
                         </li>
                     </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
                             <h5>Windows 10 Pro</h5>
-                            <h4>£".$product->getItemPrice()."</h4>
+                            <h4>£".$switch->getItemPrice()."</h4>
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
@@ -707,9 +403,9 @@ if(!isset($db))
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li>
                         <div class=\"itemDesc\">
-                            <h1>".$product->getItemName()."</h1>
-                            <h4>".$product->getItemDescription()."</h4>
-                            <p>".$product->getItemSpecification()."</p>
+                            <h1>".$switch->getItemName()."</h1>
+                            <h4>".$switch->getItemDescription()."</h4>
+                            <p>".$switch->getItemSpecification()."</p>
                         </div>
                     </li>
                 </ul>
@@ -721,59 +417,9 @@ if(!isset($db))
         }
     }
 
-    echo $listProduct
+    echo $listSwitches
 
 
     ?>
 
-    <div class="" style="margin-top:64px">
-        <div class="w3-col w3-left" style="width:300px; padding:0">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li style="padding: 0"><img src="../resources/Switches/SW-2.png" width="100%"></li>
-            </ul>
-        </div>
-        <div id="operating" class="w3-col w3-right" style="width:500px; padding:0">
-            <ul class="w3-ul w3-red" style="height: 400px">
-
-                <label for="noOp">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp" type="checkbox" style="float: right">
-                        <h5>No Operating System</h5>
-                        <h4>£699.99</h4>
-                    </li>
-                </label>
-                <label for="noOp2">
-                    <li class="w3-hover-shadow w3-light-grey">
-                        <input class="w3-check" id="noOp2" type="checkbox" style="float: right">
-                        <h5>Windows 10 Pro</h5>
-                        <h4>£839.99</h4>
-                    </li>
-                </label>
-                <li class="w3-hover-shadow w3-light-grey w3-padding-24" style="margin: 0">
-                    <button class="w3-button w3-black w3-padding-large">ADD TO BASKET</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-rest w3-center" style="padding:0;">
-            <ul class="w3-ul w3-white w3-hover-shadow" style="height: 400px">
-                <li>
-                    <div class="itemDesc">
-                        <h1>Switch</h1>
-                        <h4>This is our tier 1 workstation it is a great all around but has enough power to take on larger tasks too, while not built for a specific task it is ideal for small to medium sized businesses.</h4>
-                        <p>•	9th Generation Intel i5 9400F 2.9GHz Six Core Processor <br>
-                            •	8GB DDR4 2400MHz Memory <br>
-                            •	240GB NVME M.2 Solid State Drive <br>
-                            •	AMD Radeon Pro WX 3100 Graphics Card <br>
-                            •	ACE-CASE Micro <br>
-                            •	Cooler master MWA White PSU 300W <br>
-                            •	Gigabyte H310M S2H H310 Motherboard <br>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-
-    </div>
 </div>

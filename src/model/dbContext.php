@@ -29,6 +29,10 @@ class dbContext
         }
     }
 
+
+
+
+
     public function getTimeslot()
     {
         $sql = "SELECT * FROM `timetable_info`";
@@ -68,12 +72,31 @@ class dbContext
         }
         return $products;
     }
+
+    public function getCustomerOrder($customerID)
+    {
+        $sql = "SELECT * FROM `customer_order` WHERE `Customer_Id`= '".$customerID."'";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $customerOrder = [];
+        if ($resultSet) {
+            foreach ($resultSet as $row) {
+                $order = new customerOrder($row['Order_Id'], $row['Customer_Id'], $row['Delivery)Id'], $row['Date_Placed'], $row['Status_Code']);
+                $customerOrder[] = $order;
+            }
+        }
+        return $customerOrder;
+    }
+
 // Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0192.168.0.101
 
     public function getBasket($customerId)
     {
 
-        $sql = "SELECT DISTINCT(`Item_Id`),`Item_Name` , `Item_Description`, `Item_Specification`, `Item_Price` FROM `basket` WHERE `Temp_Customer`= '".$customerId."'";
+        $sql = "SELECT DISTINCT(`Item_Id`), `Item_Name` , `Item_Description`, `Item_Price` FROM `basket` WHERE `Temp_Customer`= '".$customerId."'";
 
 
         $statement = $this->connection->prepare($sql);
@@ -122,10 +145,10 @@ class dbContext
 
     }
 
-    public function getQuantity()
+    public function getQuantity($item,$customerId)
     {
 
-        $sql="SELECT MAX(Basket_Id) FROM basket ORDER BY Basket_Id DESC";
+        $sql="SELECT COUNT(`Item_Id`) FROM `basket` WHERE `Temp_Customer` = '".$customerId."' AND `Item_Id` = '".$item."'";
         $order = $this->connection->prepare($sql);
         $order->execute();
         $resultSet = $order->fetchAll(PDO::FETCH_ASSOC);

@@ -168,7 +168,6 @@ $optionString = "";
 $baskets = $db->getBasket($customerId);
 $className = 1;
 
-
 if($baskets)
 {
     foreach($baskets as $basket)

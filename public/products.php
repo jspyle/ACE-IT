@@ -75,7 +75,7 @@ $submitItems = $_SERVER['PHP_SELF'];
         <div class="w3-quarter w3-section">
             <ul class="w3-ul w3-white w3-hover-shadow">
                 <li class="w3-red w3-xlarge w3-padding-32">Workstations</li>
-                <li class="image"><img src="../resources/Workstations/WS-2.png"></li>
+                <li class="image"><img src="../resources/Products/WRK2.png"></li>
                 <li class="w3-padding-16">
                     <p class="cat-desc">Whether it's simple CAD work, high performance business or high end 3D modeling we have workstations for any of your specialist needs </p>
                 </li>
@@ -99,7 +99,7 @@ $submitItems = $_SERVER['PHP_SELF'];
         <div class="w3-quarter w3-section">
             <ul class="w3-ul w3-white w3-hover-shadow">
                 <li class="w3-red w3-xlarge w3-padding-32">Routers</li>
-                <li class="image"><img src="../resources/Routers/ROUTER-2.png"></li>
+                <li class="image"><img src="../resources/Products/RTR1.png"></li>
                 <li class="w3-padding-16">
                     <p class="cat-desc">Whether it's simple CAD work, high performance business or high end 3D modeling we have workstations for any of your specialist needs </p>
                 </li>
@@ -111,7 +111,7 @@ $submitItems = $_SERVER['PHP_SELF'];
         <div class="w3-quarter w3-section">
             <ul class="w3-ul w3-white w3-hover-shadow">
                 <li class="w3-red w3-xlarge w3-padding-32">Switches</li>
-                <li class="image"><img src="../resources/Switches/SW-2.png"></li>
+                <li class="image"><img src="../resources/Products/SWI1.png"></li>
                 <li class="w3-padding-16">
                     <p class="cat-desc">Whether it's simple CAD work, high performance business or high end 3D modeling we have workstations for any of your specialist needs </p>
                 </li>
@@ -230,15 +230,7 @@ $submitItems = $_SERVER['PHP_SELF'];
                 </ul>
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
-                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
-
-                    <label for=\"noOp\">
-                        <li class=\"w3-hover-shadow w3-light-grey\">
-                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
-                            <h5>No Operating System</h5>
-                            <h4>£".$server->getItemPriceNoOs()."</h4>
-                        </li>
-                    </label>
+                <ul class=\"w3-ul w3-red\" style=\"height: 400px\">                    
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
@@ -312,18 +304,10 @@ $submitItems = $_SERVER['PHP_SELF'];
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
                 <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
-
-                    <label for=\"noOp\">
-                        <li class=\"w3-hover-shadow w3-light-grey\">
-                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
-                            <h5>No Operating System</h5>
-                            <h4>£".$router->getItemPriceNoOs()."</h4>
-                        </li>
-                    </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
-                            <h5>Windows 10 Pro</h5>
+                            <h5>Router Price</h5>
                             <h4>£".$router->getItemPrice()."</h4>
                         </li>
                     </label>
@@ -390,18 +374,10 @@ $submitItems = $_SERVER['PHP_SELF'];
             </div>
             <div id=\"operating\" class=\"w3-col w3-right\" style=\"width:500px; padding:0\">
                 <ul class=\"w3-ul w3-red\" style=\"height: 400px\">
-
-                    <label for=\"noOp\">
-                        <li class=\"w3-hover-shadow w3-light-grey\">
-                            <input class=\"w3-check\" id=\"noOp\" type=\"checkbox\" style=\"float: right\">
-                            <h5>No Operating System</h5>
-                            <h4>£".$switch->getItemPriceNoOs()."</h4>
-                        </li>
-                    </label>
                     <label for=\"noOp2\">
                         <li class=\"w3-hover-shadow w3-light-grey\">
                             <input class=\"w3-check\" id=\"noOp2\" type=\"checkbox\" style=\"float: right\">
-                            <h5>Windows 10 Pro</h5>
+                            <h5>Switch Price</h5>
                             <h4>£".$switch->getItemPrice()."</h4>
                         </li>
                     </label>

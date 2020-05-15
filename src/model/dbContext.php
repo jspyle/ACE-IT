@@ -91,6 +91,24 @@ class dbContext
         return $customerOrder;
     }
 
+    public function getCustomerInfo($customerID)
+    {
+        $sql = "SELECT * FROM `customer` WHERE `Customer_Id`= '".$customerID."'";
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $customer = [];
+        if ($resultSet) {
+            foreach ($resultSet as $row) {
+                $cust = new customer($row['Customer_Id'], $row['Customer_Name'], $row['Customer_Address'], $row['Customer_Postcode'], $row['Customer_Email'], $row['Customer_Password']);
+                $customer[] = $cust;
+            }
+        }
+        return $customer;
+    }
+
     public function getDelivery($deliveryId)
     {
         $sql = "SELECT * FROM `delivery` WHERE `Delivery_Id`= '".$deliveryId."'";
@@ -278,6 +296,18 @@ class dbContext
 
     }
 
+    public function getNextOrderItemId()
+    {
+        $sql="SELECT MAX(Order_Item_Id) FROM order_item ORDER BY Order_Item_Id DESC";
+        $order = $this->connection->prepare($sql);
+        $order->execute();
+        $resultSet = $order->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultSet as $row){
+            $result = $row['MAX(Order_Item_Id)'];
+        }
+        return ($result +1);
+
+    }
 
 
 

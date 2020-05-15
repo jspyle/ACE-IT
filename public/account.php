@@ -161,6 +161,31 @@ $count = $_SESSION['customerID'];
 echo $count;
 
 $optionString = "";
+$customers = $db->getCustomerInfo($count);
+$className2 = 1;
+if($customers)
+{
+    foreach($customers as $customer)
+    {
+
+
+
+        $listCustomer.="<div class=\"w3-container w3-center w3-dark-grey\".$className2.\" style=\"margin-top:64px\">  
+            
+            <h1>Order ID: ".$customer->getCustomerName()."</h1>          
+        <div class='w3-white'>
+            <h1>Date Placed: ".$customer->getCustomerAddress()."</h1>
+            <h1>".$customer->getCustomerPostcode()."</h1>
+            <h1>".$customer->getCustomerPassword()."</h1>
+        </div>
+
+    </div>";
+        $className2 += 1;
+    }
+}
+
+
+$optionString = "";
 $orderInfos = $db->getOrderInfo($count);
 $className = 1;
 if($orderInfos)
@@ -170,14 +195,15 @@ if($orderInfos)
 
 
 
-        $listOrder.="<div class=\".$className.\" style=\"margin-top:64px\">            
-
-            <h1>".$orderInfo->getOrderId()."</h1>
-            <h1>".$orderInfo->getCustomerId()."</h1>
-            <h1>".$orderInfo->getDatePlaced()."</h1>
+        $listOrder.="<div class=\"w3-container w3-center w3-dark-grey\".$className.\" style=\"margin-top:64px\">  
+            
+            <h1>Order ID: ".$orderInfo->getOrderId()."</h1>          
+        <div class='w3-white'>
+            <h1>Date Placed: ".$orderInfo->getDatePlaced()."</h1>
             <h1>".$orderInfo->getStatusDescription()."</h1>
-            <h1>".$orderInfo->getDeliveryDate()."</h1>
+            <h1>Estimated Delivery Date: ".$orderInfo->getDeliveryDate()."</h1>
             <h1>".$orderInfo->getTimeslotDesc()."</h1>
+        </div>
 
     </div>";
         $className += 1;
@@ -185,59 +211,6 @@ if($orderInfos)
 }
 
 echo $listOrder;
-
-
-
-
-
-
-$optionString = "";
-$products = $db->getCustomerOrder($count);
-
-$sql_query="SELECT * FROM `customer_order` WHERE Customer_Id = ''".$count."''";
-
-
-$className = 1;
-if($products)
-{
-    foreach($products as $product)
-    {
-        $deliveryId = $product->getDeliveryId();
-
-
-        $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">            
-
-            <h1>".$product->getDatePlaced()."</h1>
-            <h1>".$product->getDeliveryId()."</h1>
-
-    </div>";
-        $className += 1;
-    }
-}
-
-echo $listProduct;
-
-$optionString = "";
-$deliverys = $db->getDelivery($deliveryId);
-$className = 1;
-if($deliverys)
-{
-    foreach($deliverys as $delivery)
-    {
-
-
-
-        $listDelivery.="<div class=\".$className.\" style=\"margin-top:64px\">            
-
-            <h1>".$delivery->getDeliveryDate()."</h1>
-
-    </div>";
-        $className += 1;
-    }
-}
-
-echo $listDelivery;
-
 
 
 

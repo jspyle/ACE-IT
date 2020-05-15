@@ -15,13 +15,15 @@ $randDate = rand(3,14);
 
 $date = strtotime("$randDate day");
 $dateFormat = date('Y-m-d', $date);
+$dateCurrent = date('Y-m-d');
 
-echo date('Y-m-d', $date);
+echo date('Y-m-d');
 
 $timeslotId = rand(1,4);
 
 $deliveryId = $db->getNextDeliveryId();
 $orderId = $db->getNextOrderId();
+$orderItemId = $db->getNextOrderItemId();
 
 
 
@@ -30,17 +32,54 @@ $orderId = $db->getNextOrderId();
 if (isset($_POST['submit_Request'])) {
 
     $submitDelivery = new delivery($deliveryId, $dateFormat, $timeslotId);
-    $submitCustomerOrder = new customerOrder($orderId, $count, $deliveryId, $dateFormat, 1);
-    $submitOrderItem = new orderItem2(400,$orderId,"WRK1",1);
+    $submitCustomerOrder = new customerOrder($orderId, $count, $deliveryId, $dateCurrent, 1);
+    //$submitOrderItem = new orderItem2(400,$orderId,"WRK1",1);
 
     $success = $db->delivery($submitDelivery);
     $success = $db->customerOrder($submitCustomerOrder);
-    $success = $db->orderItemIn($submitOrderItem);
+    //$success = $db->orderItemIn($submitOrderItem);
 
+    $baskets = $db->getBasket($customerId);
+    $className = 1;
+
+    if($baskets) {
+        foreach ($baskets as $basket) {
+
+            $itemId = $basket->getItemId();
+            $submitOrderItem = new orderItem2($orderItemId,$orderId,$itemId,1);
+
+            $success = $db->orderItemIn($submitOrderItem);
+
+            $orderItemId += 1;
+        }
+    }
+
+    deleteTempTable();
 }
 
 $submitItems = $_SERVER['PHP_SELF'];
 
+
+function deleteTempTable() {
+
+$mysqli = new mysqli("proj-mysql.uopnet.plymouth.ac.uk","PRCO204_H","S6qYB7BMQ0YurT43","PRCO204_H");
+
+// Check connection
+if ($mysqli -> connect_errno) {
+echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+exit();
+}
+
+// Perform query
+if ($result = $mysqli -> query("DELETE FROM basket;")) {
+    echo "Returned rows are: " . $result -> num_rows;
+    // Free result set
+    $result -> free_result();
+}
+
+$mysqli -> close();
+
+}
 
 
 
@@ -70,9 +109,7 @@ $submitItems = $_SERVER['PHP_SELF'];
 <aside>
     <div class="summary">
         <div class="summary-total-items\"><span class="total-items"></span> Items in your Bag</div>
-        <form method="post" action="">
-            <input type="submit" value="Submit" name="submit_Request" id="but_submit" />
-        </form>
+
         <div class="summary-subtotal">
             <div class="subtotal-title">Subtotal</div>
             <div class="subtotal-value final-value" id="basket-subtotal">839.99</div>
@@ -84,8 +121,8 @@ $submitItems = $_SERVER['PHP_SELF'];
         <div class="summary-delivery">
             <select name="delivery-collection" class="summary-delivery-selection">
                 <option value="0" selected="selected">Select Collection or Delivery</option>
-                <option value="collection">Collection</option>
-                <option value="delivery">----------------- Delivery coming soon ---------------</option>
+                <option value="collection">Delivery</option>
+                <option value="delivery">------------------ Collection Coming Soon ------------------</option>
             </select>
         </div>
         <div class="summary-total">
@@ -93,7 +130,9 @@ $submitItems = $_SERVER['PHP_SELF'];
             <div class="total-value final-value" id="basket-total">839.99</div>
         </div>
         <div class="summary-checkout">
-            <button onclick="window.alert('Thank you for your order'); window.location.href = 'account.php'" class="checkout-cta">Checkout</button>
+            <form method="post" action="">
+                <input onclick="window.alert('Thank you for your order'); window.location.href = 'account.php'" class="w3-button w3-black w3-padding-large" type="submit" value="Submit" name="submit_Request" id="but_submit" />
+            </form>
         </div>
     </div>
 

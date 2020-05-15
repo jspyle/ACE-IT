@@ -327,7 +327,7 @@ class item
 }
 
 
-class orderItem
+class orderItem2
 {
     private $orderItemId;
     private $orderId;
@@ -420,32 +420,25 @@ class orderStatus
 
 class basket
 {
-    private $basketId;
+
     private $itemId;
     private $itemName;
     private $itemDescription;
     private $itemPrice;
     private $tempCust;
+    private $option;
 
-    public function __construct($basketId, $itemId, $itemName, $itemDescription, $itemPrice, $tempCust)
+    public function __construct($itemId, $itemName, $itemDescription, $itemPrice, $tempCust, $option)
     {
-        $this->basketId = $basketId;
         $this->itemId = $itemId;
         $this->itemName = $itemName;
         $this->itemDescription = $itemDescription;
         $this->itemPrice = $itemPrice;
         $this->tempCust =$tempCust;
+        $this->option = $option;
     }
 
-    public function getBasketId()
-    {
-        return $this->basketId;
-    }
 
-    public function setBasketId($basketId)
-    {
-        $this->basketId = $basketId;
-    }
 
     public function getItemId()
     {
@@ -492,9 +485,96 @@ class basket
         $this->tempCust = $tempCust;
     }
 
+    public function getOption()
+    {
+        return $this->option;
+    }
+
+    public function setOption($option)
+    {
+        $this->option = $option;
+    }
+
+
 
 }
 
+class orderPageInfo
+{
+    private $orderId;
+    private $customerId;
+    private $datePlaced;
+    private $statusDescription;
+    private $deliveryDate;
+    private $timeslotDesc;
+
+    public function __construct($orderId, $customerId, $datePlaced, $statusDescription, $deliveryDate, $timeslotDesc)
+    {
+        $this->orderId = $orderId;
+        $this->customerId = $customerId;
+        $this->datePlaced = $datePlaced;
+        $this->statusDescription = $statusDescription;
+        $this->deliveryDate = $deliveryDate;
+        $this->timeslotDesc = $timeslotDesc;
+    }
+
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
+    }
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    public function setCustomerId($customerId)
+    {
+        $this->customerId = $customerId;
+    }
+    public function getDatePlaced()
+    {
+        return $this->datePlaced;
+    }
+
+    public function setDatePlaced($datePlaced)
+    {
+        $this->datePlaced = $datePlaced;
+    }
+    public function getStatusDescription()
+    {
+        return $this->statusDescription;
+    }
+
+    public function setStatusDescription($statusDescription)
+    {
+        $this->statusDescription = $statusDescription;
+    }
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
+
+    public function setDeliveryDate($deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
+    }
+    public function getTimeslotDesc()
+    {
+        return $this->timeslotDesc;
+    }
+
+    public function setTimeslotDesc($timeslotDesc)
+    {
+        $this->timeslotDesc = $timeslotDesc;
+    }
+
+
+}
 
 
 

@@ -2,6 +2,13 @@
 
 
 include "..\src\model\config.php";
+include_once "..\src\model\dbContext.php";
+
+if(!isset($db))
+{
+    $db = new dbContext();
+}
+
 
 if (isset($_POST['but_submit'])) {
 
@@ -29,7 +36,22 @@ if (isset($_POST['but_submit'])) {
     }
 
 }
+
+
+$customerId = $db->getNextCustomerId();
+
+if (isset($_POST['submit_Request'])) {
+
+    $submitUser = new customer($customerId, $_POST['customerName'], $_POST['customerAddress'], $_POST['customerPostcode'],$_POST['customerEmail'], $_POST['customerPassword']);
+
+    $success = $db->newUser($submitUser);
+
+}
+
+$submitItems = $_SERVER['PHP_SELF'];
+
 ?>
+
 
 
 <div class="container">
@@ -46,5 +68,29 @@ if (isset($_POST['but_submit'])) {
                 <input type="submit" value="Submit" name="but_submit" id="but_submit" />
             </div>
         </div>
+    </form>
+</div>
+
+<div class="newUser">
+    <form method="post" action="">
+    <h1>New User</h1>
+    <div>
+        <input type="text" class="textbox" id="customerName" name="customerName" placeholder="Customer Name" />
+    </div>
+    <div>
+        <input type="text" class="textbox" id="customerAddress" name="customerAddress" placeholder="Address"/>
+    </div>
+        <div>
+            <input type="text" class="textbox" id="customerPostcode" name="customerPostcode" placeholder="Postcode"/>
+        </div>
+        <div>
+            <input type="text" class="textbox" id="customerEmail" name="customerEmail" placeholder="Email"/>
+        </div>
+        <div>
+            <input type="password" class="textbox" id="customerPassword" name="customerPassword" placeholder="Password"/>
+        </div>
+    <div>
+        <input type="submit" value="Submit" name="submit_Request" id="but_submit" />
+    </div>
     </form>
 </div>

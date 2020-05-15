@@ -158,20 +158,57 @@ if(!isset($db))
 <?php
 
 $count = $_SESSION['customerID'];
+echo $count;
+
+$optionString = "";
+$orderInfos = $db->getOrderInfo($count);
+$className = 1;
+if($orderInfos)
+{
+    foreach($orderInfos as $orderInfo)
+    {
+
+
+
+        $listOrder.="<div class=\".$className.\" style=\"margin-top:64px\">            
+
+            <h1>".$orderInfo->getOrderId()."</h1>
+            <h1>".$orderInfo->getCustomerId()."</h1>
+            <h1>".$orderInfo->getDatePlaced()."</h1>
+            <h1>".$orderInfo->getStatusDescription()."</h1>
+            <h1>".$orderInfo->getDeliveryDate()."</h1>
+            <h1>".$orderInfo->getTimeslotDesc()."</h1>
+
+    </div>";
+        $className += 1;
+    }
+}
+
+echo $listOrder;
+
+
+
+
+
 
 $optionString = "";
 $products = $db->getCustomerOrder($count);
+
+$sql_query="SELECT * FROM `customer_order` WHERE Customer_Id = ''".$count."''";
+
+
 $className = 1;
 if($products)
 {
     foreach($products as $product)
     {
-
+        $deliveryId = $product->getDeliveryId();
 
 
         $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">            
 
             <h1>".$product->getDatePlaced()."</h1>
+            <h1>".$product->getDeliveryId()."</h1>
 
     </div>";
         $className += 1;
@@ -179,6 +216,27 @@ if($products)
 }
 
 echo $listProduct;
+
+$optionString = "";
+$deliverys = $db->getDelivery($deliveryId);
+$className = 1;
+if($deliverys)
+{
+    foreach($deliverys as $delivery)
+    {
+
+
+
+        $listDelivery.="<div class=\".$className.\" style=\"margin-top:64px\">            
+
+            <h1>".$delivery->getDeliveryDate()."</h1>
+
+    </div>";
+        $className += 1;
+    }
+}
+
+echo $listDelivery;
 
 
 

@@ -1,6 +1,7 @@
 <?php
 include_once '../src/model/dbContext.php';
 
+session_start();
 if(!isset($db))
 {
     $db = new dbContext();

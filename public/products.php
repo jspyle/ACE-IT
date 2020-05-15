@@ -14,10 +14,7 @@ if(!isset($db)) {
 }
 if (isset($_POST['submit_Request'])) {
 
-
-    $basketId = $db->getNextBasketId();
-
-    $submitRequest = new basket($basketId, $_POST['itemId'], $_POST['itemName'], $_POST['itemDesc'],$_POST['itemPrice'], $result);
+    $submitRequest = new basket($_POST['itemId'], $_POST['itemName'], $_POST['itemDesc'],$_POST['itemPrice'], $result, 1);
 
     $success = $db->basketInput($submitRequest);
 
@@ -144,6 +141,9 @@ $submitItems = $_SERVER['PHP_SELF'];
 
 
             $listProduct.="<div class=\".$className.\" style=\"margin-top:64px\">
+
+            <form method=\"post\" action=\"$submitItems\">
+
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li style=\"padding: 0\"><img src=\"../resources/Products/".$product->getItemId().".png\" width=\"100%\"></li>
@@ -161,11 +161,14 @@ $submitItems = $_SERVER['PHP_SELF'];
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
 
+                            <input hidden type=\"text\" name=\"itemId\" value=\"".$product->getItemId()."\">
+                            <input hidden type=\"text\" name=\"itemName\" value=\"".$product->getItemName()."\">                            
+                            <input hidden type=\"text\" name=\"itemDesc\" value=\"".$product->getItemDescription()."\">
+                            <input hidden type=\"text\" name=\"itemPrice\" value=".$product->getItemPrice().">
+                            
+                            
+                        <input name=\"submit_Request\" class=\"w3-button w3-black w3-padding-large\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"ADD TO BASKET\">
 
-
-
-                    
-                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
                     </li>
                 </ul>
             </div>
@@ -180,7 +183,7 @@ $submitItems = $_SERVER['PHP_SELF'];
                     </li>
                 </ul>
             </div>
-
+</form>
 
     </div>";
             $className += 1;
@@ -250,10 +253,8 @@ $submitItems = $_SERVER['PHP_SELF'];
                             <input hidden type=\"text\" name=\"itemDesc\" value=\"".$server->getItemDescription()."\">
                             <input hidden type=\"text\" name=\"itemPrice\" value=".$server->getItemPrice().">
                             
+                            <input name=\"submit_Request\" class=\"w3-button w3-black w3-padding-large\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"ADD TO BASKET\">
                             
-                        <input name=\"submit_Request\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"Place Order\">
-                        
-                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
                     </li>
                 </ul>
             </div>
@@ -301,6 +302,8 @@ $submitItems = $_SERVER['PHP_SELF'];
 
 
             $listRouter.="<div class=\".$className.\" style=\"margin-top:64px\">
+
+            <form method=\"post\" action=\"$submitItems\">
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li style=\"padding: 0\"><img src=\"../resources/Products/".$router->getItemId()."\" width=\"100%\"></li>
@@ -325,7 +328,13 @@ $submitItems = $_SERVER['PHP_SELF'];
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
-                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                    
+                            <input hidden type=\"text\" name=\"itemId\" value=\"".$router->getItemId()."\">
+                            <input hidden type=\"text\" name=\"itemName\" value=\"".$router->getItemName()."\">                            
+                            <input hidden type=\"text\" name=\"itemDesc\" value=\"".$router->getItemDescription()."\">
+                            <input hidden type=\"text\" name=\"itemPrice\" value=".$router->getItemPrice().">
+                            
+                             <input name=\"submit_Request\" class=\"w3-button w3-black w3-padding-large\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"ADD TO BASKET\">
                     </li>
                 </ul>
             </div>
@@ -340,7 +349,7 @@ $submitItems = $_SERVER['PHP_SELF'];
                     </li>
                 </ul>
             </div>
-
+</form>
 
     </div>";
             $className += 1;
@@ -371,6 +380,8 @@ $submitItems = $_SERVER['PHP_SELF'];
 
 
             $listSwitches.="<div class=\".$className.\" style=\"margin-top:64px\">
+
+            <form method=\"post\" action=\"$submitItems\">
             <div class=\"w3-col w3-left\".$className. style=\"width:300px; padding:0\">
                 <ul class=\"w3-ul w3-white w3-hover-shadow\" style=\"height: 400px\">
                     <li style=\"padding: 0\"><img src=\"../resources/Products/".$switch->getItemId()."\" width=\"100%\"></li>
@@ -395,7 +406,13 @@ $submitItems = $_SERVER['PHP_SELF'];
                         </li>
                     </label>
                     <li class=\"w3-hover-shadow w3-light-grey w3-padding-24\" style=\"margin: 0\">
-                        <button onclick=\"window.alert('Item added to basket')\" class=\"w3-button w3-black w3-padding-large\">ADD TO BASKET</button>
+                        
+                            <input hidden type=\"text\" name=\"itemId\" value=\"".$switch->getItemId()."\">
+                            <input hidden type=\"text\" name=\"itemName\" value=\"".$switch->getItemName()."\">                            
+                            <input hidden type=\"text\" name=\"itemDesc\" value=\"".$switch->getItemDescription()."\">
+                            <input hidden type=\"text\" name=\"itemPrice\" value=".$switch->getItemPrice().">
+                            
+                             <input name=\"submit_Request\" class=\"w3-button w3-black w3-padding-large\" id=\"submitRequest\" onclick=\"\" type=\"submit\" value=\"ADD TO BASKET\">
                     </li>
                 </ul>
             </div>
@@ -411,7 +428,7 @@ $submitItems = $_SERVER['PHP_SELF'];
                 </ul>
             </div>
 
-
+</form>
     </div>";
             $className += 1;
         }

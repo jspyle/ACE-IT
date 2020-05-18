@@ -107,9 +107,7 @@ if(!isset($db))
             <a href="orders.php" class="w3-bar-item w3-button"><i class="fa fa-list"></i> ORDERS</a>
             <a href="account.php" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ACCOUNT</a>
             <a href="basket.php" onclick="//document.getElementById('contact').style.display='block'" class="w3-bar-item w3-button"><i class="fa fa-shopping-basket"></i> BASKET</a>
-            <form method='post' action="">
-                <input type="submit" value="Logout" name="but_logout">
-            </form>
+
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -132,7 +130,7 @@ if(!isset($db))
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
     <div id="mainBanner" class="w3-display-left w3-text-white" style="padding:48px">
-        <span onload="pageTitle()" id="test" class="w3-jumbo w3-hide-small">Professional IT Solutions</span><br>
+        <span class="w3-jumbo w3-hide-small">Account Orders</span><br>
         <span class="w3-xxlarge w3-hide-large w3-hide-medium">ACE-IT</span><br>
         <span class="w3-large">Make sure you ACE your next IT upgrade with ACE-IT</span>
         <p><a href="products.php" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Browse Products <Today></Today></a></p>
@@ -152,7 +150,9 @@ if(!isset($db))
 <html>
 <head></head>
 <body>
-<h1>My Orders</h1>
+<h1>My Orders</h1><form method='post' action="">
+    <input class="w3-red" type="submit" value="Logout" name="but_logout">
+</form>
 
 
 <?php
